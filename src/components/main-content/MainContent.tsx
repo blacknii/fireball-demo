@@ -1,4 +1,4 @@
-import { Typography, Stack, Grid } from "@mui/material";
+import { Typography, Stack } from "@mui/material";
 import Search from "./search/Search";
 import DetailDataDisplay from "./detail-data-display/DetailDataDisplay";
 import SummaryMetrics from "./summary-metrics/SummaryMetrics";
@@ -7,7 +7,7 @@ const MainContent = () => {
   return (
     <Stack
       height="100%"
-      margin={{ sm: "0", md: "0 10rem 0 10rem" }}
+      margin="0 auto 0 auto"
       flex={1}
       alignItems="center"
       padding={{ xs: 1, sm: 2 }}
@@ -18,14 +18,15 @@ const MainContent = () => {
         Search for Meteorites
       </Typography>
       <Search />
-      <Grid container columns={{ xs: 1, sm: 2 }} spacing={2} padding="2">
-        <Grid item xs={1}>
-          <DetailDataDisplay />
-        </Grid>
-        <Grid item xs={1}>
-          <SummaryMetrics />
-        </Grid>
-      </Grid>
+      <Stack
+        spacing={2}
+        direction={{ xs: "column", sm: "column", md: "row" }}
+        alignItems="stretch"
+        width="100%"
+      >
+        <DetailDataDisplay />
+        <SummaryMetrics />
+      </Stack>
     </Stack>
   );
 };
