@@ -1,7 +1,5 @@
 import {
   Box,
-  Stack,
-  Tooltip,
   Table,
   TableBody,
   TableCell,
@@ -9,7 +7,6 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Avatar,
   Skeleton,
 } from "@mui/material";
 import { Meteorite } from "../../../shared/meteorite.model";
@@ -21,9 +18,6 @@ const DetailDataDisplay = ({
   meteorites: Meteorite[];
   loading: boolean;
 }) => {
-  console.log({ meteorites });
-  console.log({ loading });
-
   const rowsSkeletons = Array(10)
     .fill(0)
     .map((_, i) => (

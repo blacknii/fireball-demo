@@ -3,9 +3,13 @@ import Search from "./search/Search";
 import DetailDataDisplay from "./detail-data-display/DetailDataDisplay";
 import SummaryMetrics from "./summary-metrics/SummaryMetrics";
 import { useMeteoriteData } from "../../hooks/useMeteoriteData";
+import { SearchFilter } from "../../shared/searchFilter.model";
+import { useState } from "react";
 
 const MainContent = () => {
+  const [searchValue, setSearchValue] = useState<SearchFilter | null>(null);
   const data = useMeteoriteData();
+  console.log({ searchValue });
 
   return (
     <Stack
@@ -20,7 +24,7 @@ const MainContent = () => {
       <Typography component="h1" variant="h3">
         Search for Meteorites
       </Typography>
-      <Search />
+      <Search setSearchValue={setSearchValue} />
       <Stack
         spacing={2}
         direction={{ xs: "column", sm: "column", md: "row" }}
