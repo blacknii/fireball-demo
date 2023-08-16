@@ -2,8 +2,11 @@ import { Typography, Stack } from "@mui/material";
 import Search from "./search/Search";
 import DetailDataDisplay from "./detail-data-display/DetailDataDisplay";
 import SummaryMetrics from "./summary-metrics/SummaryMetrics";
+import { useMeteoriteData } from "../../hooks/useMeteoriteData";
 
 const MainContent = () => {
+  const data = useMeteoriteData();
+
   return (
     <Stack
       height="100%"
@@ -24,7 +27,10 @@ const MainContent = () => {
         alignItems="stretch"
         width="100%"
       >
-        <DetailDataDisplay />
+        <DetailDataDisplay
+          meteorites={data.meteorites}
+          loading={data.loading}
+        />
         <SummaryMetrics />
       </Stack>
     </Stack>
