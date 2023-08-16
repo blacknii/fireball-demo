@@ -4,7 +4,7 @@ const DetailDataDisplay = () => {
   return (
     <Box
       style={{
-        backgroundColor: "purple",
+        backgroundColor: "white",
         padding: 2,
         flexGrow: 1,
         width: "100%",

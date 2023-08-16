@@ -12,7 +12,7 @@ const MainContent = () => {
       alignItems="center"
       padding={{ xs: 1, sm: 2 }}
       spacing={2}
-      sx={{ backgroundColor: "red" }}
+      sx={{ backgroundColor: "#f0f0f0" }}
     >
       <Typography component="h1" variant="h3">
         Search for Meteorites

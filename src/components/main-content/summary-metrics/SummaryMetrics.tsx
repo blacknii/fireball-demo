@@ -4,7 +4,7 @@ const SummaryMetrics = () => {
   return (
     <Box
       style={{
-        backgroundColor: "#e0e0e0",
+        backgroundColor: "white",
         padding: 2,
         flexGrow: 1,
         width: "100%",
