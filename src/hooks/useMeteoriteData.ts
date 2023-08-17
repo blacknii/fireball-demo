@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Meteorite } from "../shared/meteorite.model";
+import { MeteoriteData } from "../shared/meteoriteData.model";
 
 export const useMeteoriteData = () => {
   const [meteorites, setMeteorites] = useState<Meteorite[]>([]);
@@ -15,8 +16,21 @@ export const useMeteoriteData = () => {
         const response = await axios.get(
           "https://data.nasa.gov/resource/gh4g-9sfh.json"
         );
+        const newData = response.data.map((meteorite: MeteoriteData) => {
+          const year =
+            meteorite.year !== undefined
+              ? parseInt(meteorite.year.slice(0, 4))
+              : -1;
+          return {
+            id: meteorite.id,
+            name: meteorite.name,
+            mass: parseFloat(meteorite.mass).toFixed(2),
+            recClass: meteorite.recclass,
+            year: year,
+          };
+        });
 
-        setMeteorites(response.data);
+        setMeteorites(newData);
       } catch (error) {
         console.error(error);
         if (error instanceof Error) {

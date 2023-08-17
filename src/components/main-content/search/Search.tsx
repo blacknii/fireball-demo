@@ -8,20 +8,21 @@ interface SearchBarProps {
 
 const Search = ({ setSearchValue }: SearchBarProps) => {
   const [name, setName] = useState("");
-  const [year, setYear] = useState("");
   const [composition, setComposition] = useState("");
-  const [range, setRange] = useState("");
+  const [year, setYear] = useState<number | "">("");
+  const [minRange, setMinRange] = useState<number | "">("");
+  const [maxRange, setMaxRange] = useState<number | "">("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!name && !year && !composition && !range) {
+    if (!name && !year && !composition && !minRange && !maxRange) {
       setSearchValue(null);
     } else {
       setSearchValue({
         name: name,
         year: year,
         composition: composition,
-        range: range,
+        range: [minRange, maxRange],
       });
     }
   };
@@ -29,9 +30,10 @@ const Search = ({ setSearchValue }: SearchBarProps) => {
   const handleClear = () => {
     setSearchValue(null);
     setName("");
-    setYear("");
     setComposition("");
-    setRange("");
+    setYear("");
+    setMinRange("");
+    setMaxRange("");
   };
 
   return (
@@ -52,11 +54,12 @@ const Search = ({ setSearchValue }: SearchBarProps) => {
           <Grid item xs={5}>
             <TextField
               fullWidth
+              type="number"
               name="year-of-strike"
               label="Year of strike"
               value={year}
               onChange={(e) => {
-                setYear(e.target.value);
+                setYear(e.target.value ? parseInt(e.target.value) : "");
               }}
             />
           </Grid>
@@ -82,14 +85,27 @@ const Search = ({ setSearchValue }: SearchBarProps) => {
               }}
             />
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={2.5}>
             <TextField
               fullWidth
-              name="mass-range"
-              label="Mass range"
-              value={range}
+              type="number"
+              name="min-range"
+              label="Min range"
+              value={minRange}
               onChange={(e) => {
-                setRange(e.target.value);
+                setMinRange(e.target.value ? parseInt(e.target.value) : "");
+              }}
+            />
+          </Grid>
+          <Grid item xs={2.5}>
+            <TextField
+              fullWidth
+              type="number"
+              name="max-range"
+              label="Max range"
+              value={maxRange}
+              onChange={(e) => {
+                setMaxRange(e.target.value ? parseInt(e.target.value) : "");
               }}
             />
           </Grid>

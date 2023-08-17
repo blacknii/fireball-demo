@@ -34,6 +34,9 @@ const DetailDataDisplay = ({
         <TableCell>
           <Skeleton sx={{ fontSize: "1rem" }} />
         </TableCell>
+        <TableCell>
+          <Skeleton sx={{ fontSize: "1rem" }} />
+        </TableCell>
       </TableRow>
     ));
 
@@ -41,8 +44,9 @@ const DetailDataDisplay = ({
     <TableRow key={meteorite.id}>
       <TableCell>{meteorite.id}</TableCell>
       <TableCell>{meteorite.name}</TableCell>
-      <TableCell>{parseFloat(meteorite.mass).toFixed(2)}</TableCell>
-      <TableCell>{meteorite.fall}</TableCell>
+      <TableCell>{meteorite.mass}</TableCell>
+      <TableCell>{meteorite.recClass}</TableCell>
+      <TableCell>{meteorite.year}</TableCell>
     </TableRow>
   ));
 
@@ -63,7 +67,8 @@ const DetailDataDisplay = ({
               <TableCell>Id</TableCell>
               <TableCell>Name</TableCell>
               <TableCell>Mass</TableCell>
-              <TableCell>Fall</TableCell>
+              <TableCell>Meteorite composition</TableCell>
+              <TableCell>Year</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>{loading ? rowsSkeletons : rows}</TableBody>

@@ -9,7 +9,21 @@ import { useState } from "react";
 const MainContent = () => {
   const [searchValue, setSearchValue] = useState<SearchFilter | null>(null);
   const data = useMeteoriteData();
-  console.log({ searchValue });
+
+  const filteredData =
+    !searchValue && data.meteorites
+      ? data.meteorites
+      : data.meteorites.filter(
+          (meteorite) =>
+            searchValue !== null &&
+            meteorite.name.includes(searchValue.name) &&
+            meteorite.recClass.includes(searchValue.composition) &&
+            (searchValue.year === "" || searchValue.year === meteorite.year) &&
+            (searchValue.range[0] === "" ||
+              searchValue.range[0] <= meteorite.mass) &&
+            (searchValue.range[1] === "" ||
+              searchValue.range[1] >= meteorite.mass)
+        );
 
   return (
     <Stack
@@ -31,11 +45,8 @@ const MainContent = () => {
         alignItems="stretch"
         width="100%"
       >
-        <DetailDataDisplay
-          meteorites={data.meteorites}
-          loading={data.loading}
-        />
-        <SummaryMetrics />
+        <DetailDataDisplay meteorites={filteredData} loading={data.loading} />
+        <SummaryMetrics meteorites={filteredData} loading={data.loading} />
       </Stack>
     </Stack>
   );
